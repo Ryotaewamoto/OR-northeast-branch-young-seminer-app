@@ -2,7 +2,7 @@
 
 東北ORセミナー若手交流会アプリで使用する Flutter×Firebase アプリのリポジトリです。
 
-##　Flutter
+## Flutter
 
 ```
 Dart SDK: >=2.18.2 <3.0.0
