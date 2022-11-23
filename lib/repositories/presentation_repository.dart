@@ -30,7 +30,7 @@ class PresentationRepository {
   }
 
   Stream<List<Presentation>> subscribePresentations() {
-    final collectionStream = presentationsRef().snapshots();
+    final collectionStream = presentationsRef().orderBy('startAt', descending: false).snapshots();
     return collectionStream.map(
       (qs) => qs.docs.map((qds) => qds.data()).toList(),
     );

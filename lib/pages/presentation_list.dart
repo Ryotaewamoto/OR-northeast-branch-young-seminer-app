@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:or_northeast_branch_young_seminer_app/features/presentation.dart';
 
 import '../utils/loading.dart';
@@ -26,6 +28,7 @@ class PresentationList extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final DateFormat outputFormat = DateFormat('HH:mm:ss');
     final presentationsProvider = ref
         .watch(presentationsStreamProvider)
         .when<Widget>(
@@ -41,10 +44,7 @@ class PresentationList extends HookConsumerWidget {
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10)),
                         onTap: () {
-                          // Navigator.pushNamed<void>(
-                          //   context,
-                          //   devMenu.location,
-                          // );
+                          GoRouter.of(context).push('/presentation-list/${presentation.presentationId}');
                         },
                         child: Stack(
                           children: [
@@ -52,15 +52,37 @@ class PresentationList extends HookConsumerWidget {
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(10),
+                                color: Colors.blueAccent.withOpacity(0.2),
                               ),
                               child: SizedBox(
                                 width: double.infinity,
-                                height: 100,
-                                child: Column(children: [
-                                  Text(presentation.title),
-                                  Text(presentation.presenterName),
-                                  Text(presentation.description),
-                                ]),
+                                height: 140,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Flexible(
+                                              child: Text(
+                                                presentation.title,
+                                                softWrap: true,
+                                                maxLines: 2,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                            '発表者: ${presentation.presenterName}'),
+                                        Text('所属: ${presentation.belong}'),
+                                        Text(
+                                            '開始時間: ${outputFormat.format(presentation.startAt.dateTime!)}'),
+                                        Text(
+                                            '終了時間: ${outputFormat.format(presentation.endAt.dateTime!)}'),
+                                      ]),
+                                ),
                               ),
                             ),
                             presentation.isDone
