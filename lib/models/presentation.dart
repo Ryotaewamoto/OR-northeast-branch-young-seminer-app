@@ -17,10 +17,14 @@ class Presentation with _$Presentation {
     @Default(false) bool isDone,
     @alwaysUseServerTimestampUnionTimestampConverter
     @Default(UnionTimestamp.serverTimestamp())
-        UnionTimestamp updatedAt,
+        UnionTimestamp startAt,
+    @alwaysUseServerTimestampUnionTimestampConverter
+    @Default(UnionTimestamp.serverTimestamp())
+        UnionTimestamp endAt,
   }) = _Presentation;
 
-  factory Presentation.fromJson(Map<String, dynamic> json) => _$PresentationFromJson(json);
+  factory Presentation.fromJson(Map<String, dynamic> json) =>
+      _$PresentationFromJson(json);
 
   factory Presentation.fromDocumentSnapshot(DocumentSnapshot ds) {
     final data = ds.data()! as Map<String, dynamic>;

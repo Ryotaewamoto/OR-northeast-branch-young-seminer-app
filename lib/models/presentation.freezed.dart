@@ -27,7 +27,9 @@ mixin _$Presentation {
   String get description => throw _privateConstructorUsedError;
   bool get isDone => throw _privateConstructorUsedError;
   @alwaysUseServerTimestampUnionTimestampConverter
-  UnionTimestamp get updatedAt => throw _privateConstructorUsedError;
+  UnionTimestamp get startAt => throw _privateConstructorUsedError;
+  @alwaysUseServerTimestampUnionTimestampConverter
+  UnionTimestamp get endAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,10 +50,11 @@ abstract class $PresentationCopyWith<$Res> {
       String title,
       String description,
       bool isDone,
-      @alwaysUseServerTimestampUnionTimestampConverter
-          UnionTimestamp updatedAt});
+      @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp startAt,
+      @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp endAt});
 
-  $UnionTimestampCopyWith<$Res> get updatedAt;
+  $UnionTimestampCopyWith<$Res> get startAt;
+  $UnionTimestampCopyWith<$Res> get endAt;
 }
 
 /// @nodoc
@@ -73,7 +76,8 @@ class _$PresentationCopyWithImpl<$Res, $Val extends Presentation>
     Object? title = null,
     Object? description = null,
     Object? isDone = null,
-    Object? updatedAt = null,
+    Object? startAt = null,
+    Object? endAt = null,
   }) {
     return _then(_value.copyWith(
       presentationId: null == presentationId
@@ -100,18 +104,30 @@ class _$PresentationCopyWithImpl<$Res, $Val extends Presentation>
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
               as bool,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      startAt: null == startAt
+          ? _value.startAt
+          : startAt // ignore: cast_nullable_to_non_nullable
+              as UnionTimestamp,
+      endAt: null == endAt
+          ? _value.endAt
+          : endAt // ignore: cast_nullable_to_non_nullable
               as UnionTimestamp,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UnionTimestampCopyWith<$Res> get updatedAt {
-    return $UnionTimestampCopyWith<$Res>(_value.updatedAt, (value) {
-      return _then(_value.copyWith(updatedAt: value) as $Val);
+  $UnionTimestampCopyWith<$Res> get startAt {
+    return $UnionTimestampCopyWith<$Res>(_value.startAt, (value) {
+      return _then(_value.copyWith(startAt: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UnionTimestampCopyWith<$Res> get endAt {
+    return $UnionTimestampCopyWith<$Res>(_value.endAt, (value) {
+      return _then(_value.copyWith(endAt: value) as $Val);
     });
   }
 }
@@ -131,11 +147,13 @@ abstract class _$$_PresentationCopyWith<$Res>
       String title,
       String description,
       bool isDone,
-      @alwaysUseServerTimestampUnionTimestampConverter
-          UnionTimestamp updatedAt});
+      @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp startAt,
+      @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp endAt});
 
   @override
-  $UnionTimestampCopyWith<$Res> get updatedAt;
+  $UnionTimestampCopyWith<$Res> get startAt;
+  @override
+  $UnionTimestampCopyWith<$Res> get endAt;
 }
 
 /// @nodoc
@@ -155,7 +173,8 @@ class __$$_PresentationCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? isDone = null,
-    Object? updatedAt = null,
+    Object? startAt = null,
+    Object? endAt = null,
   }) {
     return _then(_$_Presentation(
       presentationId: null == presentationId
@@ -182,9 +201,13 @@ class __$$_PresentationCopyWithImpl<$Res>
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
               as bool,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
+      startAt: null == startAt
+          ? _value.startAt
+          : startAt // ignore: cast_nullable_to_non_nullable
+              as UnionTimestamp,
+      endAt: null == endAt
+          ? _value.endAt
+          : endAt // ignore: cast_nullable_to_non_nullable
               as UnionTimestamp,
     ));
   }
@@ -201,7 +224,9 @@ class _$_Presentation implements _Presentation {
       this.description = '',
       this.isDone = false,
       @alwaysUseServerTimestampUnionTimestampConverter
-          this.updatedAt = const UnionTimestamp.serverTimestamp()});
+          this.startAt = const UnionTimestamp.serverTimestamp(),
+      @alwaysUseServerTimestampUnionTimestampConverter
+          this.endAt = const UnionTimestamp.serverTimestamp()});
 
   factory _$_Presentation.fromJson(Map<String, dynamic> json) =>
       _$$_PresentationFromJson(json);
@@ -227,11 +252,15 @@ class _$_Presentation implements _Presentation {
   @override
   @JsonKey()
   @alwaysUseServerTimestampUnionTimestampConverter
-  final UnionTimestamp updatedAt;
+  final UnionTimestamp startAt;
+  @override
+  @JsonKey()
+  @alwaysUseServerTimestampUnionTimestampConverter
+  final UnionTimestamp endAt;
 
   @override
   String toString() {
-    return 'Presentation(presentationId: $presentationId, presenterName: $presenterName, belong: $belong, title: $title, description: $description, isDone: $isDone, updatedAt: $updatedAt)';
+    return 'Presentation(presentationId: $presentationId, presenterName: $presenterName, belong: $belong, title: $title, description: $description, isDone: $isDone, startAt: $startAt, endAt: $endAt)';
   }
 
   @override
@@ -248,14 +277,14 @@ class _$_Presentation implements _Presentation {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.isDone, isDone) || other.isDone == isDone) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.startAt, startAt) || other.startAt == startAt) &&
+            (identical(other.endAt, endAt) || other.endAt == endAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, presentationId, presenterName,
-      belong, title, description, isDone, updatedAt);
+      belong, title, description, isDone, startAt, endAt);
 
   @JsonKey(ignore: true)
   @override
@@ -280,7 +309,9 @@ abstract class _Presentation implements Presentation {
       final String description,
       final bool isDone,
       @alwaysUseServerTimestampUnionTimestampConverter
-          final UnionTimestamp updatedAt}) = _$_Presentation;
+          final UnionTimestamp startAt,
+      @alwaysUseServerTimestampUnionTimestampConverter
+          final UnionTimestamp endAt}) = _$_Presentation;
 
   factory _Presentation.fromJson(Map<String, dynamic> json) =
       _$_Presentation.fromJson;
@@ -299,7 +330,10 @@ abstract class _Presentation implements Presentation {
   bool get isDone;
   @override
   @alwaysUseServerTimestampUnionTimestampConverter
-  UnionTimestamp get updatedAt;
+  UnionTimestamp get startAt;
+  @override
+  @alwaysUseServerTimestampUnionTimestampConverter
+  UnionTimestamp get endAt;
   @override
   @JsonKey(ignore: true)
   _$$_PresentationCopyWith<_$_Presentation> get copyWith =>

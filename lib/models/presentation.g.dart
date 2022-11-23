@@ -14,10 +14,14 @@ _$_Presentation _$$_PresentationFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
       isDone: json['isDone'] as bool? ?? false,
-      updatedAt: json['updatedAt'] == null
+      startAt: json['startAt'] == null
           ? const UnionTimestamp.serverTimestamp()
           : alwaysUseServerTimestampUnionTimestampConverter
-              .fromJson(json['updatedAt'] as Object),
+              .fromJson(json['startAt'] as Object),
+      endAt: json['endAt'] == null
+          ? const UnionTimestamp.serverTimestamp()
+          : alwaysUseServerTimestampUnionTimestampConverter
+              .fromJson(json['endAt'] as Object),
     );
 
 Map<String, dynamic> _$$_PresentationToJson(_$_Presentation instance) =>
@@ -28,6 +32,8 @@ Map<String, dynamic> _$$_PresentationToJson(_$_Presentation instance) =>
       'title': instance.title,
       'description': instance.description,
       'isDone': instance.isDone,
-      'updatedAt': alwaysUseServerTimestampUnionTimestampConverter
-          .toJson(instance.updatedAt),
+      'startAt': alwaysUseServerTimestampUnionTimestampConverter
+          .toJson(instance.startAt),
+      'endAt': alwaysUseServerTimestampUnionTimestampConverter
+          .toJson(instance.endAt),
     };
