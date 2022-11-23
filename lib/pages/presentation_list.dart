@@ -111,9 +111,12 @@ class PresentationList extends HookConsumerWidget {
                     );
                   },
                 )
-              : const Center(child: Text("データがありません。")),
-          error: (error, stackTrace) =>
-              const Center(child: Text("エラーが発生しました。")),
+              : const Center(
+                  child: Text("データがありません。"),
+                ),
+          error: (error, stackTrace) => const Center(
+            child: Text("エラーが発生しました。"),
+          ),
           loading: () => const OverlayLoadingWidget(),
         );
     return presentationsProvider;

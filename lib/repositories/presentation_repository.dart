@@ -30,10 +30,16 @@ class PresentationRepository {
   }
 
   Stream<List<Presentation>> subscribePresentations() {
-    final collectionStream = presentationsRef().orderBy('startAt', descending: false).snapshots();
+    final collectionStream =
+        presentationsRef().orderBy('startAt', descending: false).snapshots();
     return collectionStream.map(
       (qs) => qs.docs.map((qds) => qds.data()).toList(),
     );
+  }
+
+  Stream<Presentation?> subscribePresentation({required String presentationId}) {
+    final streamDocumentSnapshot = presentationRef(presentationId: presentationId).snapshots();
+    return streamDocumentSnapshot.map((ds) => ds.data());
   }
 
   /// 指定したユーザー かつ TodoFilter の条件で絞り込んだ Todo 一覧を購読する。
