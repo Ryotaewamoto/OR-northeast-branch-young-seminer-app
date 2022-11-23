@@ -44,7 +44,8 @@ class PresentationList extends HookConsumerWidget {
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10)),
                         onTap: () {
-                          GoRouter.of(context).push('/presentation-list/${presentation.presentationId}');
+                          GoRouter.of(context).push(
+                              '/presentation-list/${presentation.presentationId}');
                         },
                         child: Stack(
                           children: [
@@ -91,10 +92,16 @@ class PresentationList extends HookConsumerWidget {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     margin: const EdgeInsets.all(0),
-                                    color: Colors.grey.withOpacity(0.7),
+                                    color: Colors.grey.withOpacity(0.5),
                                     child: const SizedBox(
                                       width: double.infinity,
-                                      height: 100,
+                                      height: 140,
+                                      child: Center(
+                                        child: Text(
+                                          '発表済み',
+                                          style: TextStyle(fontSize: 24),
+                                        ),
+                                      ),
                                     ),
                                   )
                                 : const SizedBox(),

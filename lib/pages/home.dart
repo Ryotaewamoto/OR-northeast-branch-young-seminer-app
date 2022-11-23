@@ -16,6 +16,7 @@ class HomePage extends HookConsumerWidget {
         title: const Text('ホーム'),
       ),
       body: SingleChildScrollView(
+        physics: const ScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
