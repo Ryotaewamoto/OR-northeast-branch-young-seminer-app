@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:or_northeast_branch_young_seminer_app/features/presentation.dart';
 
@@ -49,12 +50,11 @@ class PresentationDetailPage extends HookConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const FaIcon(FontAwesomeIcons.message),
         onPressed: () async {
-          await ref
-              .read(scaffoldMessengerServiceProvider)
-              .showDialogByBuilder<void>(
+          await showDialog<void>(
+            context: context,
                 barrierDismissible: false,
                 builder: (context) => AlertDialog(
-                  title: const Text('Todo の作成'),
+                  title: const Text('コメント'),
                   content: CommonAlertDialogContent(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -65,8 +65,10 @@ class PresentationDetailPage extends HookConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: Text('キャンセル',),
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: const Text(
+                                'キャンセル',
+                              ),
                             ),
                             const SubmitButton(),
                           ],
@@ -153,7 +155,6 @@ class PresentationDetail extends HookConsumerWidget {
     return presentationProvider;
   }
 }
-
 
 /// Todo の説明を入力する TextField。
 class TodoDescriptionTextField extends HookConsumerWidget {
