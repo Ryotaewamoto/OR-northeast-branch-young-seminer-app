@@ -7,4 +7,5 @@
     "**/.fvm": true
     },
     "dart.runPubGetOnPubspecChanges": "never",
+    "java.configuration.updateBuildConfiguration": "interactive",
 }
