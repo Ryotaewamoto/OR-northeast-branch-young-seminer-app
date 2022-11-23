@@ -1,17 +1,12 @@
-# or_northeast_branch_young_seminer_app
+# 東北ORセミナー若手交流会アプリ
 
-A new Flutter project.
+東北ORセミナー若手交流会アプリで使用する Flutter×Firebase アプリのリポジトリです。
 
-## Getting Started
+##　Flutter
 
-This project is a starting point for a Flutter application.
+```
+Dart SDK: >=2.18.2 <3.0.0
+Flutter SDK: 3.3.8
+```
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# OR-northeast-branch-young-seminer-app
