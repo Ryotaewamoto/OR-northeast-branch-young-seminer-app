@@ -21,6 +21,7 @@ AppUser _$AppUserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AppUser {
   String get userId => throw _privateConstructorUsedError;
+  String get userName => throw _privateConstructorUsedError;
   List<String> get fcmTokens => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +34,7 @@ abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String userId, List<String> fcmTokens});
+  $Res call({String userId, String userName, List<String> fcmTokens});
 }
 
 /// @nodoc
@@ -50,12 +51,17 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
   @override
   $Res call({
     Object? userId = null,
+    Object? userName = null,
     Object? fcmTokens = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String,
       fcmTokens: null == fcmTokens
           ? _value.fcmTokens
@@ -72,7 +78,7 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       __$$_AppUserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, List<String> fcmTokens});
+  $Res call({String userId, String userName, List<String> fcmTokens});
 }
 
 /// @nodoc
@@ -86,12 +92,17 @@ class __$$_AppUserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = null,
+    Object? userName = null,
     Object? fcmTokens = null,
   }) {
     return _then(_$_AppUser(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
               as String,
       fcmTokens: null == fcmTokens
           ? _value._fcmTokens
@@ -105,7 +116,9 @@ class __$$_AppUserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppUser extends _AppUser {
   const _$_AppUser(
-      {this.userId = '', final List<String> fcmTokens = const <String>[]})
+      {this.userId = '',
+      this.userName = '',
+      final List<String> fcmTokens = const <String>[]})
       : _fcmTokens = fcmTokens,
         super._();
 
@@ -115,6 +128,9 @@ class _$_AppUser extends _AppUser {
   @override
   @JsonKey()
   final String userId;
+  @override
+  @JsonKey()
+  final String userName;
   final List<String> _fcmTokens;
   @override
   @JsonKey()
@@ -125,7 +141,7 @@ class _$_AppUser extends _AppUser {
 
   @override
   String toString() {
-    return 'AppUser(userId: $userId, fcmTokens: $fcmTokens)';
+    return 'AppUser(userId: $userId, userName: $userName, fcmTokens: $fcmTokens)';
   }
 
   @override
@@ -134,14 +150,16 @@ class _$_AppUser extends _AppUser {
         (other.runtimeType == runtimeType &&
             other is _$_AppUser &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
             const DeepCollectionEquality()
                 .equals(other._fcmTokens, _fcmTokens));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, userId, const DeepCollectionEquality().hash(_fcmTokens));
+  int get hashCode => Object.hash(runtimeType, userId, userName,
+      const DeepCollectionEquality().hash(_fcmTokens));
 
   @JsonKey(ignore: true)
   @override
@@ -158,14 +176,18 @@ class _$_AppUser extends _AppUser {
 }
 
 abstract class _AppUser extends AppUser {
-  const factory _AppUser({final String userId, final List<String> fcmTokens}) =
-      _$_AppUser;
+  const factory _AppUser(
+      {final String userId,
+      final String userName,
+      final List<String> fcmTokens}) = _$_AppUser;
   const _AppUser._() : super._();
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
 
   @override
   String get userId;
+  @override
+  String get userName;
   @override
   List<String> get fcmTokens;
   @override

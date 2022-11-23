@@ -8,6 +8,7 @@ part 'app_user.g.dart';
 class AppUser with _$AppUser {
   const factory AppUser({
     @Default('') String userId,
+    @Default('') String userName,
     @Default(<String>[]) List<String> fcmTokens,
   }) = _AppUser;
 
