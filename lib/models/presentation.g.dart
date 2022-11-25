@@ -14,6 +14,7 @@ _$_Presentation _$$_PresentationFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
       isDone: json['isDone'] as bool? ?? false,
+      isSession: json['isSession'] as bool? ?? false,
       startAt: json['startAt'] == null
           ? const UnionTimestamp.serverTimestamp()
           : alwaysUseServerTimestampUnionTimestampConverter
@@ -32,6 +33,7 @@ Map<String, dynamic> _$$_PresentationToJson(_$_Presentation instance) =>
       'title': instance.title,
       'description': instance.description,
       'isDone': instance.isDone,
+      'isSession': instance.isSession,
       'startAt': alwaysUseServerTimestampUnionTimestampConverter
           .toJson(instance.startAt),
       'endAt': alwaysUseServerTimestampUnionTimestampConverter

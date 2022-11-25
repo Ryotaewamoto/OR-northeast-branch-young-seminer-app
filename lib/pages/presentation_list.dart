@@ -38,26 +38,36 @@ class PresentationList extends HookConsumerWidget {
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     final presentation = data[index];
+                    final isSession = presentation.isSession;
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: isSession
+                          ? const EdgeInsets.symmetric(vertical: 8)
+                          : const EdgeInsets.all(8.0),
                       child: InkWell(
+                        highlightColor: null,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10)),
-                        onTap: () {
-                          GoRouter.of(context).push(
-                              '/presentation-list/${presentation.presentationId}');
-                        },
+                        onTap: isSession
+                            ? null
+                            : () {
+                                GoRouter.of(context).push(
+                                    '/presentation-list/${presentation.presentationId}');
+                              },
                         child: Stack(
                           children: [
                             DecoratedBox(
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.blueAccent.withOpacity(0.2),
+                                borderRadius: isSession
+                                    ? BorderRadius.circular(0)
+                                    : BorderRadius.circular(10),
+                                color: isSession
+                                    ? Colors.blueAccent.withOpacity(0.4)
+                                    : Colors.blueAccent.withOpacity(0.2),
                               ),
                               child: SizedBox(
                                 width: double.infinity,
-                                height: 140,
+                                height: 120,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
@@ -78,10 +88,16 @@ class PresentationList extends HookConsumerWidget {
                                         Text(
                                             '発表者: ${presentation.presenterName}'),
                                         Text('所属: ${presentation.belong}'),
-                                        Text(
-                                            '開始時間: ${outputFormat.format(presentation.startAt.dateTime!)}'),
-                                        Text(
-                                            '終了時間: ${outputFormat.format(presentation.endAt.dateTime!)}'),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(
+                                                '開始時間: ${outputFormat.format(presentation.startAt.dateTime!)}'),
+                                            Text(
+                                                '終了時間: ${outputFormat.format(presentation.endAt.dateTime!)}'),
+                                          ],
+                                        ),
                                       ]),
                                 ),
                               ),

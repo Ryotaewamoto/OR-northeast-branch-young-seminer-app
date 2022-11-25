@@ -26,6 +26,7 @@ mixin _$Presentation {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   bool get isDone => throw _privateConstructorUsedError;
+  bool get isSession => throw _privateConstructorUsedError;
   @alwaysUseServerTimestampUnionTimestampConverter
   UnionTimestamp get startAt => throw _privateConstructorUsedError;
   @alwaysUseServerTimestampUnionTimestampConverter
@@ -50,6 +51,7 @@ abstract class $PresentationCopyWith<$Res> {
       String title,
       String description,
       bool isDone,
+      bool isSession,
       @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp startAt,
       @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp endAt});
 
@@ -76,6 +78,7 @@ class _$PresentationCopyWithImpl<$Res, $Val extends Presentation>
     Object? title = null,
     Object? description = null,
     Object? isDone = null,
+    Object? isSession = null,
     Object? startAt = null,
     Object? endAt = null,
   }) {
@@ -103,6 +106,10 @@ class _$PresentationCopyWithImpl<$Res, $Val extends Presentation>
       isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSession: null == isSession
+          ? _value.isSession
+          : isSession // ignore: cast_nullable_to_non_nullable
               as bool,
       startAt: null == startAt
           ? _value.startAt
@@ -147,6 +154,7 @@ abstract class _$$_PresentationCopyWith<$Res>
       String title,
       String description,
       bool isDone,
+      bool isSession,
       @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp startAt,
       @alwaysUseServerTimestampUnionTimestampConverter UnionTimestamp endAt});
 
@@ -173,6 +181,7 @@ class __$$_PresentationCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? isDone = null,
+    Object? isSession = null,
     Object? startAt = null,
     Object? endAt = null,
   }) {
@@ -201,6 +210,10 @@ class __$$_PresentationCopyWithImpl<$Res>
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
               as bool,
+      isSession: null == isSession
+          ? _value.isSession
+          : isSession // ignore: cast_nullable_to_non_nullable
+              as bool,
       startAt: null == startAt
           ? _value.startAt
           : startAt // ignore: cast_nullable_to_non_nullable
@@ -223,6 +236,7 @@ class _$_Presentation implements _Presentation {
       this.title = '',
       this.description = '',
       this.isDone = false,
+      this.isSession = false,
       @alwaysUseServerTimestampUnionTimestampConverter
           this.startAt = const UnionTimestamp.serverTimestamp(),
       @alwaysUseServerTimestampUnionTimestampConverter
@@ -251,6 +265,9 @@ class _$_Presentation implements _Presentation {
   final bool isDone;
   @override
   @JsonKey()
+  final bool isSession;
+  @override
+  @JsonKey()
   @alwaysUseServerTimestampUnionTimestampConverter
   final UnionTimestamp startAt;
   @override
@@ -260,7 +277,7 @@ class _$_Presentation implements _Presentation {
 
   @override
   String toString() {
-    return 'Presentation(presentationId: $presentationId, presenterName: $presenterName, belong: $belong, title: $title, description: $description, isDone: $isDone, startAt: $startAt, endAt: $endAt)';
+    return 'Presentation(presentationId: $presentationId, presenterName: $presenterName, belong: $belong, title: $title, description: $description, isDone: $isDone, isSession: $isSession, startAt: $startAt, endAt: $endAt)';
   }
 
   @override
@@ -277,6 +294,8 @@ class _$_Presentation implements _Presentation {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.isDone, isDone) || other.isDone == isDone) &&
+            (identical(other.isSession, isSession) ||
+                other.isSession == isSession) &&
             (identical(other.startAt, startAt) || other.startAt == startAt) &&
             (identical(other.endAt, endAt) || other.endAt == endAt));
   }
@@ -284,7 +303,7 @@ class _$_Presentation implements _Presentation {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, presentationId, presenterName,
-      belong, title, description, isDone, startAt, endAt);
+      belong, title, description, isDone, isSession, startAt, endAt);
 
   @JsonKey(ignore: true)
   @override
@@ -308,6 +327,7 @@ abstract class _Presentation implements Presentation {
       final String title,
       final String description,
       final bool isDone,
+      final bool isSession,
       @alwaysUseServerTimestampUnionTimestampConverter
           final UnionTimestamp startAt,
       @alwaysUseServerTimestampUnionTimestampConverter
@@ -328,6 +348,8 @@ abstract class _Presentation implements Presentation {
   String get description;
   @override
   bool get isDone;
+  @override
+  bool get isSession;
   @override
   @alwaysUseServerTimestampUnionTimestampConverter
   UnionTimestamp get startAt;

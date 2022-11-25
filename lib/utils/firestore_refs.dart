@@ -38,16 +38,16 @@ DocumentReference<Presentation> presentationRef({
 
 /// todo コレクションの参照。
 CollectionReference<Comment> commentsRef({
-  required String userId,
+  required String presentationId,
 }) =>
-    appUserRef(userId: userId).collection('comments').withConverter(
+    presentationRef(presentationId: presentationId).collection('comments').withConverter(
           fromFirestore: (ds, _) => Comment.fromDocumentSnapshot(ds),
           toFirestore: (obj, _) => obj.toJson(),
         );
 
 /// todo ドキュメントの参照。
 DocumentReference<Comment> commentRef({
-  required String userId,
+  required String presentationId,
   required String todoId,
 }) =>
-    commentsRef(userId: userId).doc(todoId);
+    commentsRef(presentationId: presentationId).doc(todoId);

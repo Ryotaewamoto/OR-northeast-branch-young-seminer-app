@@ -15,6 +15,7 @@ class Presentation with _$Presentation {
     @Default('') String title,
     @Default('') String description,
     @Default(false) bool isDone,
+    @Default(false) bool isSession,
     @alwaysUseServerTimestampUnionTimestampConverter
     @Default(UnionTimestamp.serverTimestamp())
         UnionTimestamp startAt,
