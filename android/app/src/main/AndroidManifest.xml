@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ryotaiwamoto.or_northeast_branch_young_seminer_app">
    <application
-        android:label="or_northeast_branch_young_seminer_app"
+        android:label="東北ORセミナーApp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

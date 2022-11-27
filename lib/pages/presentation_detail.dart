@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:or_northeast_branch_young_seminer_app/features/presentation.dart';
 
+import '../features/auth.dart';
 import '../features/comment.dart';
 import '../utils/exceptions/base.dart';
 import '../utils/loading.dart';
@@ -58,7 +59,7 @@ class PresentationDetailPage extends HookConsumerWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const TodoDescriptionTextField(),
+                    const CommentTextField(),
                     const Gap(16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -208,6 +209,25 @@ class PresentationCommentList extends HookConsumerWidget {
                                   children: [
                                     Row(
                                       children: [
+                                        ref
+                                            .watch(appUserStreamProvider(
+                                                comment.userId))
+                                            .when<Widget>(
+                                              data: (data) => data != null
+                                                  ? Text(data.userName.isEmpty
+                                                      ? '名前：匿名'
+                                                      : '名前：${data.userName}')
+                                                  : const Text(
+                                                      'ユーザが取得できませんでした。'),
+                                              error: (error, stackTrace) =>
+                                                  const Text('ユーザが取得できませんでした。'),
+                                              loading: () =>
+                                                  const Text('ユーザを取得中'),
+                                            ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
                                         Flexible(
                                           child: Text(
                                             comment.description,
@@ -237,9 +257,9 @@ class PresentationCommentList extends HookConsumerWidget {
   }
 }
 
-/// Todo の説明を入力する TextField。
-class TodoDescriptionTextField extends HookConsumerWidget {
-  const TodoDescriptionTextField({super.key});
+/// Comment の説明を入力する TextField。
+class CommentTextField extends HookConsumerWidget {
+  const CommentTextField({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -263,7 +283,7 @@ class TodoDescriptionTextField extends HookConsumerWidget {
   }
 }
 
-/// Todo を作成するボタン。
+/// Comment を作成するボタン。
 class SubmitButton extends HookConsumerWidget {
   const SubmitButton({required this.presentationId, super.key});
 

@@ -1,14 +1,12 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:or_northeast_branch_young_seminer_app/pages/name_edit.dart';
 import 'package:or_northeast_branch_young_seminer_app/pages/presentation_detail.dart';
 import 'package:or_northeast_branch_young_seminer_app/pages/presentation_list.dart';
-import '../../pages/home.dart';
 
 import '../../app.dart';
+import '../../pages/home.dart';
 import '../exceptions/base.dart';
 import '../navigator_key.dart';
 import 'animation.dart';
@@ -27,6 +25,18 @@ final goRoutesProvider = Provider<GoRouter>(
     navigatorKey: ref.watch(rootNavigatorKeyProvider),
     initialLocation: HomePage.path,
     routes: <RouteBase>[
+      GoRoute(
+        parentNavigatorKey: ref.watch(rootNavigatorKeyProvider),
+        path: NameEditPage.path,
+        name: NameEditPage.name,
+        pageBuilder: (BuildContext context, GoRouterState state) {
+          return buildPageWithFullScreenAnimation(
+            page: const NameEditPage(
+              key: ValueKey(NameEditPage.name),
+            ),
+          );
+        },
+      ),
       ShellRoute(
         navigatorKey: ref.watch(shellNavigatorKeyProvider),
         builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -43,12 +53,28 @@ final goRoutesProvider = Provider<GoRouter>(
                 ),
               );
             },
+            routes: <RouteBase>[
+              // GoRoute(
+              //     parentNavigatorKey: ref.watch(rootNavigatorKeyProvider),
+              //     path: NameEditPage.path,
+              //     name: NameEditPage.name,
+              //     pageBuilder: (BuildContext context, GoRouterState state) {
+              //       return buildPageWithFullScreenAnimation(
+              //         page: const NameEditPage(
+              //           key: ValueKey(NameEditPage.name),
+              //         ),
+              //       );
+              //     },
+              //   ),
+            ]
           ),
           GoRoute(
             path: PresentationListPage.location,
             name: PresentationListPage.name,
             pageBuilder: (BuildContext context, GoRouterState state) {
-              return buildPageWithAnimation(page: const PresentationListPage());
+              return buildPageWithAnimation(page: const PresentationListPage(
+                key: ValueKey(PresentationListPage.name),
+              ));
             },
           ),
           GoRoute(

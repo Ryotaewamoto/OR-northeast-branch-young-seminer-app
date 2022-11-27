@@ -21,6 +21,13 @@ class AppUserRepository {
     return ds.data()!;
   }
 
+  Stream<AppUser?> subscribeAppUser(
+      {required String userId}) {
+    final streamDocumentSnapshot =
+        appUserRef(userId: userId).snapshots();
+    return streamDocumentSnapshot.map((ds) => ds.data());
+  }
+
   /// 指定した userId のユーザーを `SetOptions(merge: true)` で作成する。
   Future<void> setUser({required String userId}) async {
     await appUserRef(userId: userId)

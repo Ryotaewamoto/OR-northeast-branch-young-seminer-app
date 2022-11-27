@@ -17,13 +17,16 @@ class App extends HookConsumerWidget {
         ? const Center(
             child: CircularProgressIndicator(),
           )
-        : MaterialApp.router(
-            title: 'Flutter Demo',
-            // theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-            // darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-            routeInformationParser: goRouter.routeInformationParser,
-            routerDelegate: goRouter.routerDelegate,
-            routeInformationProvider: goRouter.routeInformationProvider,
-          );
+        : GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: MaterialApp.router(
+              title: 'Flutter Demo',
+              // theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+              // darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+              routeInformationParser: goRouter.routeInformationParser,
+              routerDelegate: goRouter.routerDelegate,
+              routeInformationProvider: goRouter.routeInformationProvider,
+            ),
+        );
   }
 }

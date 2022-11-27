@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -14,6 +16,15 @@ class HomePage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ホーム'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              GoRouter.of(context)
+                  .push('/home/name-edit');
+            },
+            icon: const FaIcon(FontAwesomeIcons.gear),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
