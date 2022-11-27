@@ -67,7 +67,7 @@ class PresentationList extends HookConsumerWidget {
                               ),
                               child: SizedBox(
                                 width: double.infinity,
-                                height: 120,
+                                height: 140,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
